@@ -84,6 +84,7 @@ const actions = {
       } else {
         // updated
         Toast.open({
+          type: 'is-success',
           message: 'Your Agent Answers knowledge base has been updated successfully.',
           duration: 5 * 1000
         })
