@@ -3,6 +3,14 @@
 Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
+
+# 2021.9.17-2
+
+### Fixes
+* **Agent Answers:** Set the questions column to be 30% of the table width, so
+it doesn't get crushed when answers are long.
+
+
 # 2021.9.17-1
 
 ### Fixes
