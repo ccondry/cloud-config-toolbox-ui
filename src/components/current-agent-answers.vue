@@ -17,6 +17,7 @@
       searchable
       field="question"
       label="Question"
+      width="30%"
       >
         {{ props.row.question }}
       </b-table-column>
