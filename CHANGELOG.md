@@ -3,6 +3,12 @@
 Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
+# 2021.9.17-1
+
+### Fixes
+* **Agent Answers:** Fix missing error message when upload file fails (again). 
+
+
 # 2021.9.17
 
 ### Fixes
