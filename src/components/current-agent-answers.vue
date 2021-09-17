@@ -8,7 +8,6 @@
     style="width: 100%;"
     :loading="isLoading || isWorking"
     :data="kbJson"
-    :narrowed="true"
     :paginated="true"
     >
       <b-table-column
