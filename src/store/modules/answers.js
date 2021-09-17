@@ -59,6 +59,11 @@ const actions = {
 
     if (response instanceof Error) {
       // error
+      Toast.open({
+        type: 'is-danger',
+        message: 'Failed to upload your Agent Answers:' + response.message,
+        duration: 10 * 1000
+      })
     } else {
       // success
       // refresh kb display data
