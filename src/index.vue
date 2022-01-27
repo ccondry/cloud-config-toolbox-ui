@@ -18,7 +18,7 @@
         <upload-agent-answers v-if="isLoggedIn" />
 
         <!-- current Agent Answers KB -->
-        <current-agent-answers v-if="isLoggedIn" />
+        <!-- <current-agent-answers v-if="isLoggedIn" /> -->
 
         <!-- Copyright and version footer -->
         <app-footer />
@@ -32,7 +32,7 @@ import { mapActions, mapGetters } from 'vuex'
 import Navbar from './components/navbar'
 import Welcome from './components/welcome'
 import UploadAgentAnswers from './components/upload-agent-answers'
-import CurrentAgentAnswers from './components/current-agent-answers'
+// import CurrentAgentAnswers from './components/current-agent-answers'
 import AppFooter from './components/app-footer'
 
 export default {
@@ -40,7 +40,7 @@ export default {
     Navbar,
     Welcome,
     UploadAgentAnswers,
-    CurrentAgentAnswers,
+    // CurrentAgentAnswers,
     AppFooter
   },
 
