@@ -4,6 +4,11 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2022.1.27
+
+* **Agent Answers:** Remove the display of current agent answers file.
+
+
 # 2021.9.17-2
 
 ### Fixes
