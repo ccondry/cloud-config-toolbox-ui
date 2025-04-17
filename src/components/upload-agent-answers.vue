@@ -1,5 +1,5 @@
 <template>
-  <panel title="Upload Agent Answers KB">
+  <panel title="Upload Your Custom Files">
     <b-loading :active="isLoading || isWorking" :is-full-page="false" />
     <b-field>
       <b-upload v-model="file"
@@ -12,7 +12,14 @@
             <p>
               <b-icon icon="upload" size="is-large" />
             </p>
-            <p>Upload your Agent Answers KB Base CSV file here</p>
+            <p> Click here to upload on the followig files:
+                <br />
+                - Agent Answers Knowledge Base CSV file
+                <br />
+                - AI Agent JSON file
+                <br />
+                - DialogFlow CX zip file
+            </p>
           </div>
         </section>
       </b-upload>
