@@ -4,6 +4,13 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2025.4.18
+
+* **Site:** Upgrade project to use Vue 3, Vite, Typescript.
+* **Agent Answers:** Updated upload card to support AI Agent and Dialogflow CX
+as well.
+
+
 # 2022.1.27
 
 * **Agent Answers:** Remove the display of current agent answers file.
@@ -19,7 +26,7 @@ it doesn't get crushed when answers are long.
 # 2021.9.17-1
 
 ### Fixes
-* **Agent Answers:** Fix missing error message when upload file fails (again). 
+* **Agent Answers:** Fix missing error message when upload file fails (again).
 
 
 # 2021.9.17
