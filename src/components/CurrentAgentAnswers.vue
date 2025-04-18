@@ -1,7 +1,56 @@
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
+
+import { csvStringToArray } from '../utils.ts'
+import { useUserStore } from '@/stores'
+import { useAnswerStore } from '@/stores'
+import ContentPanel from './ContentPanel.vue'
+
+const userStore = useUserStore()
+const answerStore = useAnswerStore()
+
+const userId = computed(() => {
+  try {
+    return userStore.user?.id || ''
+  } catch (e) {
+    return ''
+  }
+})
+const isLoading = computed(() => answerStore.loading.answers)
+const isWorking = computed(() => answerStore.working.answers)
+const kbJson = computed(() => {
+  if (!answerStore.kb.data) {
+    return []
+  }
+  try {
+    const json = csvStringToArray(answerStore.kb.data)
+    return json.map(row => {
+      return {
+        question: row[0],
+        answer: row[1]
+      }
+    })
+  } catch (e) {
+    return []
+  }
+})
+const csvHref = computed(() => {
+  try {
+    return `data:text/csv;charset=utf-8,${encodeURIComponent(answerStore.kb.data)}`
+  } catch (e) {
+    return null
+  }
+})
+
+onMounted(() => {
+  answerStore.getKnowledgeBase()
+})
+</script>
+
 <template>
-  <panel
+  <ContentPanel
   title="Your Current Agent Answers KB"
-  aria-id="current-agent-answers-kb"
+  ariaId="current-agent-answers-kb"
   :has-refresh="true"
   >
     <b-table
@@ -65,7 +114,7 @@
           style="margin-right: 1rem;"
           type="is-primary"
           rounded
-          @click="clickRefresh"
+          @click="answerStore.getKnowledgeBase()"
           >
             Refresh
           </b-button>
@@ -73,74 +122,5 @@
         </div>
       </template>
     </b-table>
-  </panel>
+  </ContentPanel>
 </template>
-
-<script>
-import {mapActions, mapGetters} from 'vuex'
-import {csvStringToArray} from '../utils'
-
-export default {
-  computed: {
-    ...mapGetters([
-      'kb',
-      'loading',
-      'working',
-      'user'
-    ]),
-    userId () {
-      try {
-        return this.user.id
-      } catch (e) {
-        return ''
-      }
-    },
-    isLoading () {
-      return this.loading.user.answers
-      // return true
-    },
-    isWorking () {
-      return this.working.user.answers
-    },
-    kbJson () {
-      if (!this.kb.data) {
-        return []
-      }
-      try {
-        const json = csvStringToArray(this.kb.data)
-        return json.map(row => {
-          return {
-            question: row[0],
-            answer: row[1]
-          }
-        })
-      } catch (e) {
-        return []
-      }
-    },
-    csvHref () {
-      try {
-        return `data:text/csv;charset=utf-8,${encodeURIComponent(this.kb.data)}`
-      } catch (e) {
-        return null
-      }
-    }
-  },
-
-  mounted () {
-    this.getKnowledgeBase()
-  },
-
-  methods: {
-    ...mapActions([
-      'getKnowledgeBase'
-    ]),
-    clickRefresh () {
-      this.getKnowledgeBase()
-    },
-    clickDownload () {
-      //
-    }
-  }
-}
-</script>

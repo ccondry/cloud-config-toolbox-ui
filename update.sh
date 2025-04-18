@@ -17,13 +17,13 @@ else
   git pull
   # check if git pull worked
   if [ $? -eq 0 ]; then
-    echo "running yarn"
-    yarn
+    echo "running npm i"
+    npm i
     if [ $? -eq 0 ]; then
-      echo "running yarn build..."
-      yarn build
+      echo "running npm run build..."
+      npm run build
       if [ $? -eq 0 ]; then
-        echo "yarn build successful. removing old www files..."
+        echo "npm run build successful. removing old www files..."
         rm -rf /var/www/toolbox/cloud-config/*
         echo "copying dist files to www folder..."
         cp -rf dist/* /var/www/toolbox/cloud-config/
@@ -33,10 +33,10 @@ else
           echo "failed to install cloud-config-toolbox-ui website files"
         fi
       else
-        echo "yarn build failed. help me."
+        echo "npm run build failed. help me."
       fi
     else
-      echo "yarn failed. help me."
+      echo "npm i failed. help me."
     fi
   else
     echo "failed to pull repo. help me."

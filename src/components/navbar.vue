@@ -1,11 +1,18 @@
+<script setup lang="ts">
+import { useUserStore } from '@/stores'
+const userStore = useUserStore()
+
+function clickAdmin () {
+  window.location.href = '/management'
+}
+</script>
+
 <template>
-  <b-navbar
-  :transparent="true"
-  :fixed-top="true"
-  style="background-color: rgba(0, 0, 0, 0)"
+  <nav
+  style="display: flex; justify-content: space-between; background-color: rgba(0, 0, 0, 0); padding: 0.5rem;"
   >
-    <template slot="start">
-      <b-field class="navbar-item">
+    <div style="display: flex;">
+      <div class="buttons">
         <b-button
         type="is-info"
         rounded
@@ -15,57 +22,30 @@
         >
           Toolbox Home
         </b-button>
-      </b-field>
-    </template>
-
-    <template slot="end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <b-button
-          v-if="isAdmin"
-          type="is-info"
-          rounded
-          aria-label="Admin"
-          @click="clickAdmin"
-          >
-            Admin
-          </b-button>
-
-          <b-button
-          type="is-info"
-          rounded
-          aria-label="Log Out"
-          @click="clickLogout"
-          >
-            Log Out
-          </b-button>
-        </div>
       </div>
-    </template>
-  </b-navbar>
+    </div>
+
+    <div style="display: flex;">
+      <div class="buttons">
+        <b-button
+        v-if="userStore.isAdmin"
+        type="is-info"
+        rounded
+        aria-label="Admin"
+        @click="clickAdmin"
+        >
+          Admin
+        </b-button>
+
+        <b-button
+        type="is-info"
+        rounded
+        aria-label="Log Out"
+        @click="userStore.logout()"
+        >
+          Log Out
+        </b-button>
+      </div>
+    </div>
+  </nav>
 </template>
-
-<script>
-import { mapActions, mapGetters } from 'vuex'
-
-export default {
-  computed: {
-    ...mapGetters([
-      'isAdminSu',
-      'isAdmin'
-    ])
-  },
-
-  methods: {
-    ...mapActions([
-      'logout'
-    ]),
-    clickLogout () {
-      this.logout()
-    },
-    clickAdmin () {
-      window.location = '/management'
-    }
-  }
-}
-</script>
