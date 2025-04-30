@@ -61,7 +61,7 @@ watch(file, () => {
       <b-upload v-model="file"
       drag-drop
       expanded
-      accept=".csv"
+      accept=".csv, .json, .zip"
       >
         <section class="section">
           <div class="content has-text-centered">
@@ -71,11 +71,11 @@ watch(file, () => {
             <p>
               Click here to upload on the followig files:
               <br />
-              - Agent Answers Knowledge Base CSV file
-              <br />
-              - AI Agent JSON file
-              <br />
-              - DialogFlow CX zip file
+              <ul style="text-align: left;">
+              <li>Agent Answers Knowledge Base CSV file</li>
+              <li>AI Agent JSON file</li>
+              <li>DialogFlow CX zip file</li>
+            </ul>
             </p>
           </div>
         </section>
