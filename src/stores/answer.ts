@@ -86,7 +86,7 @@ export const useAnswerStore = defineStore('answer', {
           // was it created or updated?
           if (response.status === 201) {
             // created - let user know it could be a while
-            let message = 'Your Agent Answers knowledge base file has been '
+            let message = 'Your custom file has been '
             message += 'uploaded. Please allow 24-48 hours for your file to be '
             message += 'added to the demo platform.'
             new Dialog().alert({
@@ -97,9 +97,12 @@ export const useAnswerStore = defineStore('answer', {
             })
           } else {
             // updated
+            let message = 'Your custom file has been '
+            message += 'uploaded. Please allow 24-48 hours for your file to be '
+            message += 'added to the demo platform.'
             new Toast().open({
               type: 'is-success',
-              message: 'Your Agent Answers knowledge base has been updated successfully.',
+              message,
               duration: 5 * 1000
             })
           }

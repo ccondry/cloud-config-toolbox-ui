@@ -30,8 +30,8 @@ watch(file, () => {
       file.value = null
     })
   }
-  let message = `Are you sure you want to upload <b>${name}</b> `
-  message += 'as a Agent Answers knowledge base?'
+  let message = `Are you sure you want to upload "<b>${name}</b>" `
+  message += 'file?'
   if (answerStore.kb && answerStore.kb.data) {
     message += ' This will <strong>overwrite</strong> your existing knowledge base.'
   }
@@ -69,12 +69,12 @@ watch(file, () => {
               <b-icon icon="upload" size="is-large" />
             </p>
             <p>
-              Click here to upload on the followig files:
+              Click here to upload one of the following files:
               <br />
               <ul style="text-align: left;">
               <li>Agent Answers Knowledge Base CSV file</li>
               <li>AI Agent JSON file</li>
-              <li>DialogFlow CX zip file</li>
+              <li>DialogFlow CX ZIP file</li>
             </ul>
             </p>
           </div>
