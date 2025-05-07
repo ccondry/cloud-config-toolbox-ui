@@ -100,10 +100,16 @@ export const useAnswerStore = defineStore('answer', {
             let message = 'Your custom file has been '
             message += 'uploaded. Please allow 24-48 hours for your file to be '
             message += 'added to the demo platform.'
-            new Toast().open({
-              type: 'is-success',
+            // new Toast().open({
+            //   type: 'is-success',
+            //   message,
+            //   duration: 5 * 1000
+            // })
+            new Dialog().alert({
+              title: 'Upload Complete',
               message,
-              duration: 5 * 1000
+              type: 'is-success',
+              confirmText: 'OK'
             })
           }
         } else {
