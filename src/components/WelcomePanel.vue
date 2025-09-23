@@ -14,7 +14,7 @@ const userStore = useUserStore()
     <p>
       Welcome to the dCloud
       <strong>Demo Configurations</strong>
-      Toolbox for PCCE/WxCCE Demos!
+      Toolbox for <strong>PCCE/WxCCE</strong> Demos <strong>Only</strong>!
     </p>
   </ContentPanel>
 </template>
