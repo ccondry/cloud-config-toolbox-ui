@@ -73,8 +73,8 @@ watch(file, () => {
               <br />
               <ul style="text-align: left;">
               <li>Agent Answers Knowledge Base CSV file</li>
-              <li>AI Agent JSON file</li>
-              <li>DialogFlow CX ZIP file</li>
+              <li>AI Agent JSON/ZIP file (Not Availabe Yet, Still in Development)</li>
+              <li>DialogFlow CX ZIP file (Not Available Yet, Still in Development)</li>
             </ul>
             </p>
           </div>
