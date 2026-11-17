@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, watch, onMounted, ref } from 'vue'
 
+import AmbientBg from '@/components/AmbientBg.vue'
 import Navbar from '@/components/NavBar.vue'
 import WelcomePanel from '@/components/WelcomePanel.vue'
 import UploadAgentAnswers from '@/components/UploadAgentAnswers.vue'
@@ -36,19 +37,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <Navbar />
-    <!-- main -->
-    <div
-    id="main-container"
-    class="container is-fluid is-marginless app-content"
-    >
-      <section class="main">
-        <b-loading :active="isProduction && (isLoading || isWorking)" />
-        <WelcomePanel />
-        <UploadAgentAnswers v-if="userStore.isLoggedIn" />
-        <AppFooter />
-      </section>
+  <div class="app-shell">
+    <!-- page background glow -->
+    <AmbientBg />
+    <div class="app-page">
+      <Navbar />
+      <!-- main -->
+      <div
+      id="main-container"
+      class="container is-fluid is-marginless app-content"
+      >
+        <section class="main">
+          <b-loading :active="isProduction && (isLoading || isWorking)" />
+          <WelcomePanel />
+          <UploadAgentAnswers v-if="userStore.isLoggedIn" />
+        </section>
+      </div>
+      <AppFooter />
     </div>
   </div>
 </template>

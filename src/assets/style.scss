@@ -1,0 +1,139 @@
+// Vision / Figma catalog palette
+$app-bg: #0B1118;
+$surface: #101a24;
+$surface-raised: #131a23;
+$card-surface: rgba(11, 16, 28, 0.97);
+$accent: #7cadf7;
+$accent-hover: #a3c8ff;
+$accent-active: #bad6ff;
+$accent-cyan: #6eaffd;
+$status-green: #00a88f;
+$status-red: #ff5c4a;
+$status-yellow: #d67f04;
+$fg-strong: #ffffff;
+$fg: rgba(255, 255, 255, 0.85);
+$fg-muted: rgba(255, 255, 255, 0.55);
+$fg-faint: rgba(255, 255, 255, 0.4);
+$hairline: rgba(255, 255, 255, 0.08);
+
+// set fonts in bulma
+$family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$family-sans-serif: $family-primary;
+
+// set bulma colors to the dark glass palette
+$primary: $accent;
+$primary-invert: $surface;
+$info: $accent-cyan;
+$info-invert: $surface;
+$link: $accent-cyan;
+$link-hover: $accent-hover;
+$success: $status-green;
+$danger: $status-red;
+$warning: $status-yellow;
+
+$scheme-main: $surface;
+$scheme-main-bis: $surface-raised;
+$scheme-main-ter: $surface-raised;
+$scheme-invert: $fg-strong;
+$background: $surface-raised;
+$border: rgba(255, 255, 255, 0.14);
+$border-hover: rgba(255, 255, 255, 0.28);
+$border-light: $hairline;
+$text: $fg;
+$text-light: $fg-muted;
+$text-strong: $fg-strong;
+$body-background-color: $app-bg;
+$body-color: $fg;
+
+$input-background-color: rgba(255, 255, 255, 0.04);
+$input-color: $fg-strong;
+$input-placeholder-color: $fg-faint;
+$input-border-color: rgba(255, 255, 255, 0.14);
+$input-hover-border-color: rgba(255, 255, 255, 0.28);
+$input-focus-border-color: $accent;
+$input-focus-box-shadow-color: rgba(124, 173, 247, 0.25);
+$label-color: $fg-strong;
+
+$modal-background-background-color: rgba(3, 6, 12, 0.7);
+$modal-card-head-background-color: $surface;
+$modal-card-head-border-bottom: 1px solid $hairline;
+$modal-card-title-color: $fg-strong;
+$modal-card-body-background-color: $surface;
+$modal-card-foot-border-top: 1px solid $hairline;
+
+$dropdown-content-background-color: $surface;
+$dropdown-item-color: $fg;
+$dropdown-item-hover-color: $fg-strong;
+$dropdown-item-hover-background-color: rgba(255, 255, 255, 0.06);
+$dropdown-divider-background-color: $hairline;
+
+$table-background-color: transparent;
+$table-color: $fg;
+$table-head-cell-color: $fg-strong;
+$table-cell-border: 1px solid $hairline;
+$table-row-hover-background-color: rgba(255, 255, 255, 0.04);
+$table-striped-row-even-background-color: rgba(255, 255, 255, 0.02);
+$table-striped-row-even-hover-background-color: rgba(255, 255, 255, 0.05);
+
+// keep button hover and active states subtle on the dark background
+$button-darken-full: 0%;
+$button-darken-half: 0%;
+
+// import bulma source
+@import "bulma/bulma";
+
+// import buefy source, to apply the variables above
+@import "buefy/src/scss/buefy";
+
+.app-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: clip;
+}
+
+.app-page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+// tables sit on the glass card surface
+.table {
+  background-color: transparent;
+  color: var(--fg);
+
+  th {
+    color: var(--fg-strong);
+  }
+}
+
+.b-table .table-wrapper .table,
+.b-table .table {
+  background-color: transparent;
+}
+
+// pagination
+.pagination-link,
+.pagination-previous,
+.pagination-next {
+  color: var(--fg);
+  border-color: var(--hairline);
+}
+
+// drag and drop upload area
+.upload-draggable {
+  border-color: $border-hover;
+  color: var(--fg);
+
+  &:hover,
+  &.is-hovered {
+    border-color: var(--accent);
+    background-color: rgba(124, 173, 247, 0.06);
+  }
+}
+
+@import './theme.scss';
