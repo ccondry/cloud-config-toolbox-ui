@@ -2,7 +2,7 @@ import { DialogProgrammatic as Dialog } from 'buefy'
 import { defineStore } from 'pinia'
 import { useEndpointStore } from './endpoint.ts'
 import { isProduction } from '@/config.ts'
-import { parseJwt } from '@/utils.ts'
+import { parseJwt, isJwtExpired } from '@/utils.ts'
 
 type User = {
   id: string
@@ -100,8 +100,9 @@ export const useUserStore = defineStore('user', {
             // save new JWT
             this.setJwt(json.jwt)
           } else {
-            // remove JWT
+            // remove JWT and make the user log in again
             this.unsetJwt()
+            this.login()
           }
         } else {
           this.error.logout = response.status + ' - ' + (await response.text())
@@ -127,6 +128,9 @@ export const useUserStore = defineStore('user', {
         })
         if (response.ok) {
           this.user = await response.json()
+        } else if (response.status === 401) {
+          // the API rejected this JWT
+          this.rejectJwt('Your JWT was rejected. Enter a new JWT:')
         } else {
           this.error.details = response.status + ' - ' + (await response.text())
         }
@@ -141,19 +145,25 @@ export const useUserStore = defineStore('user', {
       }
     },
     setJwt(jwt: string) {
+      let user
       try {
         // test parse JWT to user JSON
-        parseJwt(jwt)
-        // put JWT in state
-        this.jwt = jwt
-        // put JWT in localStorage
-        window.localStorage.setItem('jwt', jwt)
-        // get provision info for this user
-        this.getUser()
+        user = parseJwt(jwt)
       } catch (e) {
         // parseJwt failed - delete this invalid JWT
-        this.unsetJwt()
+        this.rejectJwt('Your JWT is invalid. Enter a new JWT:')
+        return
       }
+      if (isJwtExpired(user)) {
+        this.rejectJwt('Your JWT has expired. Enter a new JWT:')
+        return
+      }
+      // put JWT in state
+      this.jwt = jwt
+      // put JWT in localStorage
+      window.localStorage.setItem('jwt', jwt)
+      // get provision info for this user
+      this.getUser()
     },
     unsetJwt() {
       // remove JWT from state
@@ -161,7 +171,12 @@ export const useUserStore = defineStore('user', {
       // remove JWT from localStorage
       window.localStorage.removeItem('jwt')
     },
-    login() {
+    // forget a JWT that is invalid, expired, or rejected by the API, then log in again
+    rejectJwt(message: string) {
+      this.unsetJwt()
+      this.login(message)
+    },
+    login(message = 'Enter your JWT:') {
       if (isProduction) {
         // production - forward to auth page for SSO
         window.location.href = '/auth'
@@ -169,9 +184,13 @@ export const useUserStore = defineStore('user', {
         // development - prompt for JWT
         new Dialog().prompt({
           title: 'Log In',
-          message: 'Enter your JWT:',
-          onConfirm: (jwt) => {
-            this.setJwt(jwt)
+          message,
+          inputAttrs: {
+            placeholder: 'JWT',
+          },
+          onConfirm: (value: string) => {
+            // strip whitespace and the quotes the browser console shows around localStorage.jwt
+            this.setJwt(value.trim().replace(/^['"]|['"]$/g, ''))
           },
           canCancel: false,
           confirmText: 'Log In',

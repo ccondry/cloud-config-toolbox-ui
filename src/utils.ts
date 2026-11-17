@@ -44,3 +44,8 @@ export function parseJwt(token: string) {
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
   return JSON.parse(window.atob(base64))
 }
+
+// JWT exp is in seconds
+export function isJwtExpired(user: { exp?: number }) {
+  return typeof user.exp === 'number' && user.exp * 1000 < Date.now()
+}

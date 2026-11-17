@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, onMounted, ref } from 'vue'
+import { computed, onMounted } from 'vue'
 
 import AmbientBg from '@/components/AmbientBg.vue'
 import Navbar from '@/components/NavBar.vue'
@@ -17,15 +17,6 @@ const isLoading = computed(() => {
   return appStore.loading.apiVersion || userStore.loading.details
 })
 const isWorking = computed(() => false)
-const isLoggedIn = computed(() => userStore.isLoggedIn)
-watch(isLoggedIn, (val, oldVal) => {
-  if (val && !oldVal) {
-    // user just logged in
-  } else if (!val && oldVal) {
-    // user just logged out. make them log in again.
-    userStore.login()
-  }
-})
 
 onMounted(() => {
   // try to find and validate user's JWT from localStorage,
