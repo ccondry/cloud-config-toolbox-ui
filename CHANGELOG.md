@@ -4,6 +4,17 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2026.11.18-1
+
+* **Build:** Fix `npm run build` failing on type-check errors, which made the
+server install retry the build forever.
+* **Dependencies:** Replace `@ntohq/buefy-next` with the official `buefy` 3 and
+upgrade `bulma` from 0.9.4 to 1, using the published Buefy CSS instead of
+compiling the Buefy and Bulma Sass source.
+* **Site:** Move the theme's Bulma Sass variable overrides to Bulma 1 CSS
+variables.
+
+
 # 2026.11.18
 
 * **Site:** Apply the dCloud Collaboration Toolbox glass theme: dark palette,
