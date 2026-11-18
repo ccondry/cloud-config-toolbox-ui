@@ -76,6 +76,10 @@ a {
   border-color: $color;
   color: $color;
 
+  &.is-outlined {
+    background-color: transparent;
+  }
+
   &:hover,
   &.is-hovered {
     background-color: rgba($color, 0.1);
@@ -98,6 +102,17 @@ a {
 
   &:focus:not(:active) {
     box-shadow: 0 0 0 2px var(--app-bg), 0 0 0 4px $color;
+  }
+
+  &.is-outlined {
+    &:hover,
+    &.is-hovered,
+    &:focus,
+    &.is-focused {
+      background-color: $color;
+      border-color: $color;
+      color: var(--surface);
+    }
   }
 
   // Bulma fills disabled color buttons with $color, which hides the text

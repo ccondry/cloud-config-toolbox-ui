@@ -12,7 +12,7 @@ const isLoading = computed(() => {
 const isWorking = computed(() => {
   return answerStore.working.answers
 })
-const file = ref<Blob | null>(null)
+const file = ref<File | null>(null)
 watch(file, () => {
   if (!file.value) {
     return
@@ -21,7 +21,7 @@ watch(file, () => {
   const reader = new window.FileReader()
   const name = file?.value?.name
   reader.onload = (e) => {
-    const data = e.currentTarget?.result
+    const data = e.target?.result
     answerStore.uploadFile({
       name,
       data

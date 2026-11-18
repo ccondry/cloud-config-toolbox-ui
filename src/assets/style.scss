@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Vision / Figma catalog palette
 $app-bg: #0B1118;
 $surface: #101a24;
@@ -16,74 +18,139 @@ $fg-muted: rgba(255, 255, 255, 0.55);
 $fg-faint: rgba(255, 255, 255, 0.4);
 $hairline: rgba(255, 255, 255, 0.08);
 
-// set fonts in bulma
 $family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$family-sans-serif: $family-primary;
-
-// set bulma colors to the dark glass palette
-$primary: $accent;
-$primary-invert: $surface;
-$info: $accent-cyan;
-$info-invert: $surface;
-$link: $accent-cyan;
-$link-hover: $accent-hover;
-$success: $status-green;
-$danger: $status-red;
-$warning: $status-yellow;
-
-$scheme-main: $surface;
-$scheme-main-bis: $surface-raised;
-$scheme-main-ter: $surface-raised;
-$scheme-invert: $fg-strong;
-$background: $surface-raised;
 $border: rgba(255, 255, 255, 0.14);
 $border-hover: rgba(255, 255, 255, 0.28);
-$border-light: $hairline;
-$text: $fg;
-$text-light: $fg-muted;
-$text-strong: $fg-strong;
-$body-background-color: $app-bg;
-$body-color: $fg;
 
-$input-background-color: rgba(255, 255, 255, 0.04);
-$input-color: $fg-strong;
-$input-placeholder-color: $fg-faint;
-$input-border-color: rgba(255, 255, 255, 0.14);
-$input-hover-border-color: rgba(255, 255, 255, 0.28);
-$input-focus-border-color: $accent;
-$input-focus-box-shadow-color: rgba(124, 173, 247, 0.25);
-$label-color: $fg-strong;
+@mixin bulma-color($name, $color, $invert: null) {
+  --bulma-#{$name}-h: #{color.channel($color, "hue", $space: hsl)};
+  --bulma-#{$name}-s: #{color.channel($color, "saturation", $space: hsl)};
+  --bulma-#{$name}-l: #{color.channel($color, "lightness", $space: hsl)};
+  --bulma-#{$name}-on-scheme-l: var(--bulma-#{$name}-l);
+  @if $invert {
+    --bulma-#{$name}-invert-l: #{color.channel($invert, "lightness", $space: hsl)};
+  }
+}
 
-$modal-background-background-color: rgba(3, 6, 12, 0.7);
-$modal-card-head-background-color: $surface;
-$modal-card-head-border-bottom: 1px solid $hairline;
-$modal-card-title-color: $fg-strong;
-$modal-card-body-background-color: $surface;
-$modal-card-foot-border-top: 1px solid $hairline;
+// set bulma colors and fonts to the dark glass palette
+:root {
+  @include bulma-color("primary", $accent, $surface);
+  @include bulma-color("info", $accent-cyan, $surface);
+  @include bulma-color("link", $accent-cyan);
+  @include bulma-color("success", $status-green);
+  @include bulma-color("danger", $status-red);
+  @include bulma-color("warning", $status-yellow);
 
-$dropdown-content-background-color: $surface;
-$dropdown-item-color: $fg;
-$dropdown-item-hover-color: $fg-strong;
-$dropdown-item-hover-background-color: rgba(255, 255, 255, 0.06);
-$dropdown-divider-background-color: $hairline;
+  --bulma-family-primary: #{$family-primary};
+  --bulma-scheme-h: #{color.channel($surface, "hue", $space: hsl)};
+  --bulma-scheme-s: #{color.channel($surface, "saturation", $space: hsl)};
+  --bulma-scheme-main-l: #{color.channel($surface, "lightness", $space: hsl)};
+  --bulma-scheme-main-bis-l: #{color.channel($surface-raised, "lightness", $space: hsl)};
+  --bulma-scheme-main-ter-l: #{color.channel($surface-raised, "lightness", $space: hsl)};
+  --bulma-background-l: #{color.channel($surface-raised, "lightness", $space: hsl)};
+  --bulma-scheme-invert: #{$fg-strong};
+  --bulma-border: #{$border};
+  --bulma-border-hover: #{$border-hover};
+  --bulma-border-weak: #{$hairline};
+  --bulma-text: #{$fg};
+  --bulma-text-weak: #{$fg-muted};
+  --bulma-text-strong: #{$fg-strong};
+  --bulma-link-text: #{$accent-cyan};
+  --bulma-link-text-hover: #{$accent-hover};
+  --bulma-body-background-color: #{$app-bg};
+  --bulma-body-color: #{$fg};
+  --bulma-label-color: #{$fg-strong};
+  --bulma-strong-weight: 700;
+  --bulma-shadow: none;
+  --bulma-radius-small: 2px;
+  --bulma-radius: 4px;
+  --bulma-radius-large: 6px;
+}
 
-$table-background-color: transparent;
-$table-color: $fg;
-$table-head-cell-color: $fg-strong;
-$table-cell-border: 1px solid $hairline;
-$table-row-hover-background-color: rgba(255, 255, 255, 0.04);
-$table-striped-row-even-background-color: rgba(255, 255, 255, 0.02);
-$table-striped-row-even-hover-background-color: rgba(255, 255, 255, 0.05);
+.modal {
+  --bulma-modal-background-background-color: rgba(3, 6, 12, 0.7);
+  --bulma-modal-card-head-padding: 20px;
+  --bulma-modal-card-body-padding: 20px;
+  --bulma-modal-card-head-background-color: #{$surface};
+  --bulma-modal-card-title-color: #{$fg-strong};
+  --bulma-modal-card-body-background-color: #{$surface};
+  --bulma-modal-card-foot-background-color: #{$surface};
+}
 
-// keep button hover and active states subtle on the dark background
-$button-darken-full: 0%;
-$button-darken-half: 0%;
+.dropdown {
+  --bulma-dropdown-content-background-color: #{$surface};
+  --bulma-dropdown-divider-background-color: #{$hairline};
+}
 
-// import bulma source
-@import "bulma/bulma";
+.table {
+  --bulma-table-background-color: transparent;
+  --bulma-table-color: #{$fg};
+  --bulma-table-head-cell-color: #{$fg-strong};
+  --bulma-table-cell-border-color: #{$hairline};
+  --bulma-table-row-hover-background-color: rgba(255, 255, 255, 0.04);
+  --bulma-table-striped-row-even-background-color: rgba(255, 255, 255, 0.02);
+  --bulma-table-striped-row-even-hover-background-color: rgba(255, 255, 255, 0.05);
+}
 
-// import buefy source, to apply the variables above
-@import "buefy/src/scss/buefy";
+.input,
+.textarea,
+.select select {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: $border;
+  color: $fg-strong;
+
+  &::placeholder {
+    color: $fg-faint;
+  }
+
+  &:hover,
+  &.is-hovered {
+    border-color: $border-hover;
+  }
+
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    border-color: $accent;
+  }
+}
+
+.dialog {
+  --bulma-dialog-card-head-padding: 20px;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.buttons {
+  gap: 0.5rem;
+}
+
+.dialog .modal-card .modal-card-foot .button {
+  min-width: 5em;
+}
+
+.modal-card-head,
+.dialog .modal-card .modal-card-head {
+  border-bottom: 1px solid $hairline;
+}
+
+.modal-card-foot,
+.dialog .modal-card .modal-card-foot {
+  border-top: 1px solid $hairline;
+}
+
+.dropdown-item {
+  color: $fg;
+}
+
+a.dropdown-item:hover,
+button.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: $fg-strong;
+}
 
 .app-shell {
   position: relative;

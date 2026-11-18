@@ -1,7 +1,7 @@
 import {
   ToastProgrammatic as Toast,
   DialogProgrammatic as Dialog
-} from 'buefy/src'
+} from 'buefy'
 
 import { defineStore } from 'pinia'
 import { useEndpointStore } from './endpoint.ts'

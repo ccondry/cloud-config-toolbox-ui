@@ -49,23 +49,23 @@ export const useUserStore = defineStore('user', {
   }),
 
   getters: {
-    isAdminSu () {
+    isAdminSu (): string | boolean | undefined {
       try {
         return this.jwtUser?.suJwt
       } catch (e) {
         return false
       }
     },
-    isAdmin () {
+    isAdmin (): boolean | undefined {
       try {
         return this.jwtUser?.admin
       } catch (e) {
         return false
       }
     },
-    isLoggedIn () {
+    isLoggedIn (): boolean {
       try {
-        return this.jwtUser?.email.length > 0
+        return (this.jwtUser?.email.length ?? 0) > 0
       } catch (e) {
         return false
       }

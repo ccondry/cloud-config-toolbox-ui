@@ -15,8 +15,8 @@
   "dependencies": {
     "@fontsource/inter": "^5.3.0",
     "@mdi/font": "^7.4.47",
-    "buefy": "npm:@ntohq/buefy-next@^0.2.0",
-    "bulma": "0.9.4",
+    "buefy": "^3.1.0",
+    "bulma": "^1.0.4",
     "pinia": "^2.3.1",
     "vue": "^3.5.13"
   },
