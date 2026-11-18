@@ -6,6 +6,7 @@ import { parseJwt, isJwtExpired } from '@/utils.ts'
 
 type User = {
   id: string
+  username?: string
   suJwt?: string
   email: string
   admin: boolean
