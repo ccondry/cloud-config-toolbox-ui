@@ -4,6 +4,20 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2026.11.18
+
+* **Site:** Apply the dCloud Collaboration Toolbox glass theme: dark palette,
+ambient background, glass panels and Inter font.
+* **Header:** Show "dCloud Collaboration Toolbox" beside the Cisco logo, with
+Home, Demo Configurations (current page, with a spinning gradient border) and
+Admin (admins only) buttons.
+* **Header:** Add the dCloud Applications dial pad menu and the user avatar
+account menu with Log out.
+* **Footer:** Show copyright and UI and API versions in the page footer.
+* **Login:** Forget expired, invalid or rejected JWTs and show the dev JWT login
+prompt.
+
+
 # 2025.4.18
 
 * **Site:** Upgrade project to use Vue 3, Vite, Typescript.

@@ -1,7 +1,7 @@
 {
   "name": "cloud-config-toolbox-ui",
   "author": "Coty Condry <ccondry@cisco.com>",
-  "version": "2025.4.18",
+  "version": "2026.11.18",
   "private": true,
   "type": "module",
   "scripts": {
